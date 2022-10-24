@@ -25,19 +25,24 @@ class FileIdExtension(ExtensionApp):
         - ArbitraryFileIdManager otherwise.
         """,
         config=True,
+        default_value=None,
+        allow_none=True,
     )
 
     def initialize_settings(self):
-        if self.file_id_manager_class == AbstractFileIdManager:
+        if self.file_id_manager_class is None:
             if isinstance(self.settings["contents_manager"], FileContentsManager):
-                self.log.debug(
-                    "Contents manager is a FileContentsManager, defaulting to LocalFileIdManager."
+                self.log.info(
+                    "Contents manager is a FileContentsManager. Defaulting to LocalFileIdManager."
                 )
                 self.file_id_manager_class = LocalFileIdManager
             else:
+                self.log.info(
+                    "Contents manager is not a FileContentsManager. Defaulting to ArbitraryFileIdManager."
+                )
                 self.file_id_manager_class = ArbitraryFileIdManager
 
-        self.log.debug(f"Configured File ID manager: {self.file_id_manager_class.__name__}")
+        self.log.info(f"Configured File ID manager: {self.file_id_manager_class.__name__}")
         file_id_manager = self.file_id_manager_class(
             log=self.log, root_dir=self.serverapp.root_dir, config=self.config
         )
