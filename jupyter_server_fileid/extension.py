@@ -54,15 +54,7 @@ class FileIdExtension(ExtensionApp):
 
     def initialize_event_listeners(self):
         file_id_manager = self.settings["file_id_manager"]
-
-        # define event handlers per contents manager action
-        handlers_by_action = {
-            "get": None,
-            "save": lambda data: file_id_manager.save(data["path"]),
-            "rename": lambda data: file_id_manager.move(data["source_path"], data["path"]),
-            "copy": lambda data: file_id_manager.copy(data["source_path"], data["path"]),
-            "delete": lambda data: file_id_manager.delete(data["path"]),
-        }
+        handlers_by_action = file_id_manager.get_handlers_by_action()
 
         async def cm_listener(logger: EventLogger, schema_id: str, data: dict) -> None:
             handler = handlers_by_action[data["action"]]
