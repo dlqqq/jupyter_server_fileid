@@ -36,9 +36,9 @@ def log(log_before, log_after):
     return decorator
 
 
-class AbstractFileIdManager(LoggingConfigurable):
+class BaseFileIdManager(LoggingConfigurable):
     """
-    Abstract base class for File ID manager implementations. All File ID
+    Base class for File ID manager implementations. All File ID
     managers should inherit from this class.
     """
 
@@ -97,7 +97,7 @@ class AbstractFileIdManager(LoggingConfigurable):
         raise NotImplementedError("must be implemented by subclass")
 
 
-class ArbitraryFileIdManager(AbstractFileIdManager):
+class ArbitraryFileIdManager(BaseFileIdManager):
     """
     File ID manager that works on arbitrary filesystems. Each file is assigned a
     unique ID. The path is only updated upon calling `move()`, `copy()`, or
@@ -189,7 +189,7 @@ class ArbitraryFileIdManager(AbstractFileIdManager):
             self.con.close()
 
 
-class LocalFileIdManager(AbstractFileIdManager):
+class LocalFileIdManager(BaseFileIdManager):
     """
     File ID manager that supports tracking files in local filesystems by
     associating each with a unique file ID, which is maintained across

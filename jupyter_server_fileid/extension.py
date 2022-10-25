@@ -4,7 +4,7 @@ from jupyter_server.services.contents.filemanager import FileContentsManager
 from traitlets import Type
 
 from jupyter_server_fileid.manager import (
-    AbstractFileIdManager,
+    BaseFileIdManager,
     ArbitraryFileIdManager,
     LocalFileIdManager,
 )
@@ -17,7 +17,7 @@ class FileIdExtension(ExtensionApp):
     name = "jupyter_server_fileid"
 
     file_id_manager_class = Type(
-        klass=AbstractFileIdManager,
+        klass=BaseFileIdManager,
         help="""File ID manager instance to use.
 
         Defaults to:
