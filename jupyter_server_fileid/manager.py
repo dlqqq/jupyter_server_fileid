@@ -58,7 +58,7 @@ class AbstractFileIdManager(LoggingConfigurable):
     @validate("root_dir", "db_path")
     def _validate_abspath_traits(self, proposal):
         if proposal["value"] is None:
-            raise TraitError(f"LocalFileIdManager : {proposal['trait'].name} must not be None")
+            raise TraitError(f"FileIdManager : {proposal['trait'].name} must not be None")
         if not os.path.isabs(proposal["value"]):
             raise TraitError(
                 f"FileIdManager : {proposal['trait'].name} must be an absolute path"
