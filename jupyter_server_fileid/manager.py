@@ -43,7 +43,7 @@ class AbstractFileIdManager(LoggingConfigurable):
     """
 
     root_dir = Unicode(
-        help=("The root being served by Jupyter server. Must be an absolute path."), config=False
+        help=("The root directory being served by Jupyter server. Must be an absolute path."), config=False
     )
 
     db_path = Unicode(
