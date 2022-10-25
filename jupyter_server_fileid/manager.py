@@ -91,8 +91,8 @@ class AbstractFileIdManager(LoggingConfigurable):
 
     def get_handlers_by_action(self) -> Dict[str, Optional[Callable[[Dict[str, Any]], Any]]]:
         """Returns a dictionary whose keys are contents manager event actions
-        and whose values are lambdas invoked upon receipt of an event of the
-        same action. The lambda accepts the body of the event as its only
+        and whose values are callables invoked upon receipt of an event of the
+        same action. The callable accepts the body of the event as its only
         argument. To ignore an event action, set the value to `None`."""
         raise NotImplementedError("must be implemented by subclass")
 
