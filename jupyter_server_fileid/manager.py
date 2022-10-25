@@ -61,7 +61,7 @@ class AbstractFileIdManager(LoggingConfigurable):
             raise TraitError(f"LocalFileIdManager : {proposal['trait'].name} must not be None")
         if not os.path.isabs(proposal["value"]):
             raise TraitError(
-                f"LocalFileIdManager : {proposal['trait'].name} must be an absolute path"
+                f"FileIdManager : {proposal['trait'].name} must be an absolute path"
             )
         return proposal["value"]
 
